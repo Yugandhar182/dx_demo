@@ -7,15 +7,15 @@
   
 	onMount(async () => {
 	  const response = await fetch(
-		"https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
+		"https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154"
 	  );
 	  const responseData = await response.json();
 	  jsonData = responseData.data;
   
 	  const gridData = jsonData.map((item) => ({
-		id: item.id,
-		firstName: item.firstName,
-		surname: item.surname,
+		id: item.reference,
+		firstName: item.fullName,
+		surname: item.fullName,
 		email: item.email,
 		mobile: item.mobile,
 	  }));
@@ -55,7 +55,7 @@
 			  const newRowData = e.data;
 			  try {
 				const response = await fetch(
-				  "https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E",
+				  "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154",
 				  {
 					method: "POST",
 					headers: {
@@ -81,7 +81,7 @@
 			  const updatedRowData = e.data;
 			  try {
 				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
 				  {
 					method: "POST",
 					headers: {
@@ -107,7 +107,7 @@
 			  const removedRowData = e.data;
 			  try {
 				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
 				  {
 					method: "DELETE",
 				  }
@@ -137,7 +137,6 @@
 		}
 	  );
 	}
-  </script>
-  
-  <div id="dataGrid"></div>
-  
+</script>
+
+<div id="dataGrid"></div>
