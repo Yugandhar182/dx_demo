@@ -13,15 +13,13 @@
 	  jsonData = responseData.data;
 	  console.log(jsonData, "json");
   
-	  const gridData = jsonData
-		.slice(0, jsonData.length - 5)
-		.map((item) => ({
-		
-		  firstName: item.firstName,
-		  surname: item.surname,
-		  email: item.email,
-		  mobile: item.mobile,
-		}));
+	  const gridData = jsonData.map((item) => ({
+		id: item.id,
+		firstName: item.firstName,
+		surname: item.surname,
+		email: item.email,
+		mobile: item.mobile,
+	  }));
   
 	  console.log(gridData, "griddata");
   
@@ -30,7 +28,7 @@
 		{
 		  dataSource: gridData,
 		  columns: [
-			
+			{ dataField: "id", caption: "ID" },
 			{ dataField: "firstName", caption: "firstName" },
 			{ dataField: "surname", caption: "Surname" },
 			{ dataField: "email", caption: "Email" },
@@ -76,6 +74,54 @@
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to add new row", error);
+			  }
+			},
+			onRowUpdated: async (e) => {
+			  const updatedRowData = e.data;
+			  try {
+				const response = await fetch(
+				  `https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify(updatedRowData),
+				  }
+				);
+  
+				if (response.ok) {
+				  // Handle success
+				  console.log("Row updated successfully");
+				} else {
+				  // Handle error
+				  console.error("Failed to update row");
+				}
+			  } catch (error) {
+				// Handle error
+				console.error("Failed to update row", error);
+			  }
+			},
+			onRowRemoved: async (e) => {
+			  const removedRowData = e.data;
+			  try {
+				const response = await fetch(
+				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  {
+					method: "DELETE",
+				  }
+				);
+  
+				if (response.ok) {
+				  // Handle success
+				  console.log("Row deleted successfully");
+				} else {
+				  // Handle error
+				  console.error("Failed to delete row");
+				}
+			  } catch (error) {
+				// Handle error
+				console.error("Failed to delete row", error);
 			  }
 			},
 		  },
