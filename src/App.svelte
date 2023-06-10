@@ -48,7 +48,7 @@
           },
           popup: {
             showTitle: true,
-            title: "Row in the editing state",
+            title: "Candidate Edit",
           },
           onRowInserted: async (e) => {
             const newRowData = e.data;
