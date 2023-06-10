@@ -17,7 +17,7 @@
 		.slice(0, jsonData.length - 5)
 		.map((item) => ({
 		
-		  firstname: item.firstname,
+		  firstName: item.firstName,
 		  surname: item.surname,
 		  email: item.email,
 		  mobile: item.mobile,
@@ -31,7 +31,7 @@
 		  dataSource: gridData,
 		  columns: [
 			
-			{ dataField: "firstname", caption: "First Name" },
+			{ dataField: "firstName", caption: "firstName" },
 			{ dataField: "surname", caption: "Surname" },
 			{ dataField: "email", caption: "Email" },
 			{ dataField: "mobile", caption: "Mobile" },
