@@ -3,7 +3,6 @@
 	import DevExpress from "devextreme";
 	
 	let jsonData = [];
-	let data = [];
 	
 	onMount(async () => {
 	  const response = await fetch(
@@ -40,97 +39,9 @@
 			visible: true,
 		  },
 		  editing: {
-			allowDeleting: true,
-			allowAdding: true,
-			allowUpdating: true,
-			mode: "popup",
-			form: {
-			  labelLocation: "top",
-			},
-			popup: {
-			  showTitle: true,
-			  title: "Row in the editing state",
-			},
-			onRowInserted: async (e) => {
-			  const newRowData = e.data;
-	
-			  try {
-				const response = await fetch(
-				  "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154",
-				  {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					},
-					body: JSON.stringify(newRowData),
-				  }
-				);
-	
-				if (response.ok) {
-				  const responseData = await response.json();
-				  const newItem = {
-					id: responseData.reference,
-					firstName: responseData.fullName,
-					surname: responseData.fullName,
-					email: responseData.email,
-					mobile: responseData.mobile,
-				  };
-				  dataGrid.instance.refresh(); // Refresh the grid to display the new item
-				  console.log(newItem);
-				  console.log("New row added successfully");
-				} else {
-				  console.error("Failed to add new row");
-				}
-			  } catch (error) {
-				console.error("Failed to add new row", error);
-			  }
-			},
-			onRowUpdated: async (e) => {
-			  const updatedRowData = e.data;
-	
-			  try {
-				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
-				  {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					},
-					body: JSON.stringify(updatedRowData),
-				  }
-				);
-	
-				if (response.ok) {
-				  console.log(updatedRowData);
-				  console.log("Row updated successfully");
-				} else {
-				  console.error("Failed to update row");
-				}
-			  } catch (error) {
-				console.error("Failed to update row", error);
-			  }
-			},
-			onRowRemoved: async (e) => {
-			  const removedRowData = e.data;
-	
-			  try {
-				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
-				  {
-					method: "DELETE",
-				  }
-				);
-	
-				if (response.ok) {
-				  console.log(removedRowData);
-				  console.log("Row deleted successfully");
-				} else {
-				  console.error("Failed to delete row");
-				}
-			  } catch (error) {
-				console.error("Failed to delete row", error);
-			  }
-			},
+			allowAdding: false, // Disable adding new rows
+			allowUpdating: false, // Disable updating existing rows
+			allowDeleting: false, // Disable deleting rows
 		  },
 		  paging: {
 			pageSize: 10,
