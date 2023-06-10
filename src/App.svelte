@@ -91,7 +91,7 @@
   
 				if (response.ok) {
 				  // Handle success
-				  console.log("Row updated successfully");
+				  console.log("Row update successfully");
 				} else {
 				  // Handle error
 				  console.error("Failed to update row");
