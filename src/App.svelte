@@ -109,31 +109,29 @@
 			  }
 			},
 			onRowRemoved: async (e) => {
-			  const removedRowData = e.data;
-			  console.log(removedRowData);
-			  try {
-				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
-				  {
-					method: "DELETE",
-				  }
-				);
-  
-				
-  
-				if (response.ok) {
-				  // Handle success
-				  console.log("Row deleted successfully");
-				} else {
-				  // Handle error
-				  console.error("Failed to delete row");
-				}
-			  } catch (error) {
-				// Handle error
-				console.error("Failed to delete row", error);
-			  }
-			},
-		  },
+  const removedRowData = e.data;
+  console.log(removedRowData);
+  try {
+    const response = await fetch(
+      `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.ok) {
+      // Handle success
+      console.log("Row deleted successfully");
+    } else {
+      // Handle error
+      console.error("Failed to delete row");
+    }
+  } catch (error) {
+    // Handle error
+    console.error("Failed to delete row", error);
+  }
+},
+
 		  paging: {
 			pageSize: 10,
 		  },
