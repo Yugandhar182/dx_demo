@@ -50,8 +50,11 @@
 			  showTitle: true,
 			  title: "Row in the editing state",
 			},
+
+			 
 			onRowInserted: async (e) => {
 			  const newRowData = e.data;
+			  console.log(newRowData, "newRowData");
 			  try {
 				const response = await fetch(
 				  "https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E",
@@ -60,7 +63,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: console.log(newRowData),
+					body: JSON.stringify(newRowData),
 				  }
 				);
   
@@ -86,7 +89,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: console.log(updatedRowData),
+					body: JSON.stringify(updatedRowData),
 				  }
 				);
   
