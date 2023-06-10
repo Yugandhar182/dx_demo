@@ -53,6 +53,7 @@
 			},
 			onRowInserted: async (e) => {
 			  const newRowData = e.data;
+			  console.log("New Row Data:", newRowData);
 			  try {
 				const response = await fetch(
 				  "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154",
@@ -65,6 +66,8 @@
 				  }
 				);
   
+				console.log("Add Row Response:", response);
+  
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
@@ -72,8 +75,6 @@
 				  // Handle error
 				  console.error("Failed to add new row");
 				}
-  
-				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to add new row", error);
@@ -81,6 +82,7 @@
 			},
 			onRowUpdated: async (e) => {
 			  const updatedRowData = e.data;
+			  console.log("Updated Row Data:", updatedRowData);
 			  try {
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
@@ -93,6 +95,8 @@
 				  }
 				);
   
+				console.log("Update Row Response:", response);
+  
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row updated successfully");
@@ -100,8 +104,6 @@
 				  // Handle error
 				  console.error("Failed to update row");
 				}
-  
-				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to update row", error);
@@ -109,6 +111,7 @@
 			},
 			onRowRemoved: async (e) => {
 			  const removedRowData = e.data;
+			  console.log("Removed Row Data:", removedRowData);
 			  try {
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
@@ -117,6 +120,8 @@
 				  }
 				);
   
+				console.log("Remove Row Response:", response);
+  
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row deleted successfully");
@@ -124,8 +129,6 @@
 				  // Handle error
 				  console.error("Failed to delete row");
 				}
-  
-				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to delete row", error);
