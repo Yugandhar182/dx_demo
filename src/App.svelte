@@ -86,7 +86,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(updatedRowData),
+					body: console.log(updatedRowData),
 				  }
 				);
   
