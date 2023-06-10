@@ -68,9 +68,10 @@
   
 				
 				if (response.ok) {
+					return fetch();
 				  // Handle success
 				  console.log("New row added successfully");
-				  return fetch();
+				  
 				} else {
 				  // Handle error
 				  console.error("Failed to add new row");
@@ -98,9 +99,10 @@
 				
   
 				if (response.ok) {
+					return fetch();
 				  // Handle success
 				  console.log("Row updated successfully");
-				  return fetch();
+				  
 				} else {
 				  // Handle error
 				  console.error("Failed to update row");
@@ -124,9 +126,10 @@
 				
             
 				if (response.ok) {
+					return fetch();
 				  // Handle success
 				  console.log("Row deleted successfully");
-				  return fetch();
+				  
 				} else {
 				  // Handle error
 				  console.error("Failed to delete row");
