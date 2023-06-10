@@ -20,7 +20,8 @@
 		mobile: item.mobile,
 	  }));
   
-	  createDataGrid(gridData);
+	  
+	  console.log(gridData,"griddata");
 	});
   
 	function createDataGrid(gridData) {
