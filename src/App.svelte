@@ -135,11 +135,11 @@
 			},
 		  },
 		  paging: {
-			pageSize: 10,
+			pageSize: 30,
 		  },
 		  pager: {
 			showPageSizeSelector: true,
-			allowedPageSizes: [5, 10, 20],
+			allowedPageSizes: [5, 10, 20 , 30],
 			showInfo: true,
 		  },
 		}
