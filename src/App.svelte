@@ -1,17 +1,16 @@
 <script>
 	import { onMount } from "svelte";
 	import DevExpress from "devextreme";
-  
+	
 	let jsonData = [];
 	let data = [];
-  
+	
 	onMount(async () => {
 	  const response = await fetch(
 		"https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
 	  );
 	  const responseData = await response.json();
 	  jsonData = responseData.data;
-	  console.log(jsonData, "json");
   
 	  const gridData = jsonData.map((item) => ({
 		id: item.id,
@@ -21,7 +20,7 @@
 		mobile: item.mobile,
 	  }));
   
-	  
+	  console.log(gridData, "griddata");
   
 	  const dataGrid = new DevExpress.ui.dxDataGrid(
 		document.getElementById("dataGrid"),
@@ -60,22 +59,13 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(newRowData), // Convert data to JSON string
+					body: JSON.stringify(newRowData),
 				  }
 				);
   
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
-				  const responseData = await response.json();
-				  const newRecord = {
-					id: responseData.id,
-					firstName: responseData.firstName,
-					surname: responseData.surname,
-					email: responseData.email,
-					mobile: responseData.mobile,
-				  };
-				  dataGrid.instance.addRow(newRecord);
 				} else {
 				  // Handle error
 				  console.error("Failed to add new row");
@@ -91,11 +81,11 @@
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
 				  {
-					method: "POST",
+					method: "POST", // or "PATCH" depending on your API's requirements
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(updatedRowData), // Convert data to JSON string
+					body: JSON.stringify(updatedRowData),
 				  }
 				);
   
@@ -123,15 +113,14 @@
   
 				if (response.ok) {
 				  // Handle success
-				  console.log("Row removed successfully");
-				  dataGrid.instance.deleteRow(e.rowIndex);
+				  console.log("Row deleted successfully");
 				} else {
 				  // Handle error
-				  console.error("Failed to remove row");
+				  console.error("Failed to delete row");
 				}
 			  } catch (error) {
 				// Handle error
-				console.error("Failed to remove row", error);
+				console.error("Failed to delete row", error);
 			  }
 			},
 		  },
