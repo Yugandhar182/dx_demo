@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from "svelte";
 	import DevExpress from "devextreme";
-	
+  
 	let jsonData = [];
 	let data = [];
-	
+  
 	onMount(async () => {
 	  const response = await fetch(
 		"https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E"
@@ -28,7 +28,7 @@
 		  dataSource: gridData,
 		  columns: [
 			{ dataField: "id", caption: "ID" },
-			{ dataField: "firstName", caption: "firstName" },
+			{ dataField: "firstName", caption: "First Name" },
 			{ dataField: "surname", caption: "Surname" },
 			{ dataField: "email", caption: "Email" },
 			{ dataField: "mobile", caption: "Mobile" },
@@ -59,7 +59,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(newRowData),
+					body: JSON.stringify(newRowData), // Convert the JavaScript object to JSON string
 				  }
 				);
   
@@ -81,11 +81,11 @@
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
 				  {
-					method: "POST", // or "PATCH" depending on your API's requirements
+					method: "POST", // Use the PUT method for updating an existing row
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(updatedRowData),
+					body: JSON.stringify(updatedRowData), // Convert the JavaScript object to JSON string
 				  }
 				);
   
