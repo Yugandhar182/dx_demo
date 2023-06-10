@@ -1,5 +1,8 @@
 <script>
 	// Sample data
+	import { onMount } from "svelte";
+	import DevExpress from "devextreme";
+  
 	let jsonData = [];
 	let data = [];
   
