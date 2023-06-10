@@ -86,10 +86,53 @@
 			  }
 			},
 			onRowUpdated: async (e) => {
-			  // Code for updating a row
+			  const updatedRowData = e.data;
+			  try {
+				const response = await fetch(
+				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  {
+					method: "PUT",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify(updatedRowData), // Convert data to JSON string
+				  }
+				);
+  
+				if (response.ok) {
+				  // Handle success
+				  console.log("Row updated successfully");
+				} else {
+				  // Handle error
+				  console.error("Failed to update row");
+				}
+			  } catch (error) {
+				// Handle error
+				console.error("Failed to update row", error);
+			  }
 			},
 			onRowRemoved: async (e) => {
-			  // Code for removing a row
+			  const removedRowData = e.data;
+			  try {
+				const response = await fetch(
+				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
+				  {
+					method: "DELETE",
+				  }
+				);
+  
+				if (response.ok) {
+				  // Handle success
+				  console.log("Row removed successfully");
+				  dataGrid.instance.deleteRow(e.rowIndex);
+				} else {
+				  // Handle error
+				  console.error("Failed to remove row");
+				}
+			  } catch (error) {
+				// Handle error
+				console.error("Failed to remove row", error);
+			  }
 			},
 		  },
 		  paging: {
