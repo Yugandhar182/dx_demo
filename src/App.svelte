@@ -20,8 +20,10 @@
 		mobile: item.mobile,
 	  }));
   
-	  console.log(gridData, "griddata");
+	  createDataGrid(gridData);
+	});
   
+	function createDataGrid(gridData) {
 	  const dataGrid = new DevExpress.ui.dxDataGrid(
 		document.getElementById("dataGrid"),
 		{
@@ -59,7 +61,7 @@
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(newRowData), // Convert the JavaScript object to JSON string
+					body: JSON.stringify(newRowData),
 				  }
 				);
   
@@ -81,17 +83,17 @@
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
 				  {
-					method: "POST", // Use the PUT method for updating an existing row
+					method: "PUT",
 					headers: {
 					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(updatedRowData), // Convert the JavaScript object to JSON string
+					body: JSON.stringify(updatedRowData),
 				  }
 				);
   
 				if (response.ok) {
 				  // Handle success
-				  console.log("Row update successfully");
+				  console.log("Row updated successfully");
 				} else {
 				  // Handle error
 				  console.error("Failed to update row");
@@ -134,7 +136,7 @@
 		  },
 		}
 	  );
-	});
+	}
   </script>
   
   <div id="dataGrid"></div>
