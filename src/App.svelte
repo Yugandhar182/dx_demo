@@ -53,7 +53,6 @@
 			onRowInserted: async (e) => {
 			  const newRowData = e.data;
 			  try {
-				console.log("Data being sent to API:", e.newRowData);
 				const response = await fetch(
 				  "https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E",
 				  {
@@ -68,6 +67,15 @@
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
+				  const responseData = await response.json();
+				  const newRecord = {
+					id: responseData.id,
+					firstName: responseData.firstName,
+					surname: responseData.surname,
+					email: responseData.email,
+					mobile: responseData.mobile,
+				  };
+				  dataGrid.instance.addRow(newRecord);
 				} else {
 				  // Handle error
 				  console.error("Failed to add new row");
@@ -78,52 +86,10 @@
 			  }
 			},
 			onRowUpdated: async (e) => {
-			  const updatedRowData = e.data;
-			  try {
-				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
-				  {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					},
-					body: JSON.stringify(updatedRowData), // Convert data to JSON string
-				  }
-				);
-  
-				if (response.ok) {
-				  // Handle success
-				  console.log("Row updated successfully");
-				} else {
-				  // Handle error
-				  console.error("Failed to update row");
-				}
-			  } catch (error) {
-				// Handle error
-				console.error("Failed to update row", error);
-			  }
+			  // Code for updating a row
 			},
 			onRowRemoved: async (e) => {
-			  const removedRowData = e.data;
-			  try {
-				const response = await fetch(
-				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST1236C4CF23E6921C41429A6E1D546AC9535E`,
-				  {
-					method: "DELETE",
-				  }
-				);
-  
-				if (response.ok) {
-				  // Handle success
-				  console.log("Row deleted successfully");
-				} else {
-				  // Handle error
-				  console.error("Failed to delete row");
-				}
-			  } catch (error) {
-				// Handle error
-				console.error("Failed to delete row", error);
-			  }
+			  // Code for removing a row
 			},
 		  },
 		  paging: {
