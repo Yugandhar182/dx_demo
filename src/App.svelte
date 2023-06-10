@@ -20,6 +20,7 @@
 		email: item.email,
 		phone: item.mobile,
 	  }));
+	  console.log(gridData,"griddata");
   
 	  const dataGrid = new DevExpress.ui.dxDataGrid("#dataGrid", {
 		dataSource: gridData,
