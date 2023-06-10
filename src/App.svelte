@@ -70,7 +70,7 @@
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
-				  console.log(newRowData);
+				  return fetch();
 				} else {
 				  // Handle error
 				  console.error("Failed to add new row");
@@ -100,7 +100,7 @@
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row updated successfully");
-				  console.log(updatedRowData);
+				  return fetch();
 				} else {
 				  // Handle error
 				  console.error("Failed to update row");
@@ -126,7 +126,7 @@
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row deleted successfully");
-				  console.log(removedRowData);
+				  return fetch();
 				} else {
 				  // Handle error
 				  console.error("Failed to delete row");
