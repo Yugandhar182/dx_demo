@@ -53,7 +53,7 @@
 			},
 			onRowInserted: async (e) => {
 			  const newRowData = e.data;
-			  console.log(newRowData);
+			
 			  try {
 				const response = await fetch(
 				  "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154",
@@ -81,7 +81,7 @@
 			},
 			onRowUpdated: async (e) => {
 			  const updatedRowData = e.data;
-			  console.log(updatedRowData);
+			 
 			  try {
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${updatedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
@@ -94,7 +94,7 @@
 				  }
 				);
   
-				
+				console.log(updatedRowData);
   
 				if (response.ok) {
 				  // Handle success
@@ -110,7 +110,7 @@
 			},
 			onRowRemoved: async (e) => {
 			  const removedRowData = e.data;
-			  console.log(removedRowData);
+			  
 			  try {
 				const response = await fetch(
 				  `https://api.recruitly.io/api/candidate/${removedRowData.id}?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
@@ -118,9 +118,9 @@
 					method: "DELETE",
 				  }
 				);
-  
+				console.log(removedRowData);
 				
-  
+            
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row deleted successfully");
