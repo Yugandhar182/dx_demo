@@ -66,10 +66,11 @@
 				  }
 				);
   
-				console.log(newRowData);
+				
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
+				  console.log(newRowData);
 				} else {
 				  // Handle error
 				  console.error("Failed to add new row");
@@ -94,11 +95,12 @@
 				  }
 				);
   
-				console.log(updatedRowData);
+				
   
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row updated successfully");
+				  console.log(updatedRowData);
 				} else {
 				  // Handle error
 				  console.error("Failed to update row");
@@ -124,6 +126,7 @@
 				if (response.ok) {
 				  // Handle success
 				  console.log("Row deleted successfully");
+				  console.log(removedRowData);
 				} else {
 				  // Handle error
 				  console.error("Failed to delete row");
