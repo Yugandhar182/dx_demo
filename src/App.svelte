@@ -20,8 +20,7 @@
 		mobile: item.mobile,
 	  }));
   
-	  
-	  console.log(gridData,"griddata");
+	  createDataGrid(gridData);
 	});
   
 	function createDataGrid(gridData) {
@@ -54,7 +53,7 @@
 			},
 			onRowInserted: async (e) => {
 			  const newRowData = e.data;
-			  console.log(newRowData);
+			
 			  try {
 				const response = await fetch(
 				  "https://api.recruitly.io/api/candidate?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154",
@@ -67,7 +66,7 @@
 				  }
 				);
   
-				
+				console.log(newRowData);
 				if (response.ok) {
 				  // Handle success
 				  console.log("New row added successfully");
