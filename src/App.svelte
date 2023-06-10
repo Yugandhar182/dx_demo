@@ -72,6 +72,8 @@
 				  // Handle error
 				  console.error("Failed to add new row");
 				}
+  
+				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to add new row", error);
@@ -98,6 +100,8 @@
 				  // Handle error
 				  console.error("Failed to update row");
 				}
+  
+				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to update row", error);
@@ -120,6 +124,8 @@
 				  // Handle error
 				  console.error("Failed to delete row");
 				}
+  
+				console.log(response); // Log the response object
 			  } catch (error) {
 				// Handle error
 				console.error("Failed to delete row", error);
@@ -137,6 +143,7 @@
 		}
 	  );
 	}
-</script>
-
-<div id="dataGrid"></div>
+  </script>
+  
+  <div id="dataGrid"></div>
+  
