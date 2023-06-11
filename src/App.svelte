@@ -108,7 +108,7 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(e.newdata),
+        body: JSON.stringify(e.data),
       }
     );
 
