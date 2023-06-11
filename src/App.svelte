@@ -102,7 +102,7 @@
 				  gridData[rowIndex] = responseJson.data;
 				  dataGrid.option("dataSource", gridData);
 				  dataGrid.refresh();
-				  console.log("Row updated successfully");
+				  console.log("Row update successfully");
 				} else {
 				  console.error("Failed to update row");
 				}
