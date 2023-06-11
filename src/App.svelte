@@ -112,7 +112,7 @@
 				}
 			  );
   
-			  const responseData = await response.json();
+			 
 			  if (response.ok) {
 				const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
 				if (updatedItemIndex > -1) {
