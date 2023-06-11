@@ -5,6 +5,7 @@
   
 	let jsonData = [];
 	let gridData = [];
+	let dataGrid;
   
 	onMount(async () => {
 	  const fetchData = async () => {
@@ -16,6 +17,7 @@
 		  jsonData = responseData.data;
   
 		  gridData = jsonData.map((item) => ({
+			id: item.id,
 			firstName: item.firstName,
 			email: item.email,
 			mobile: item.mobile,
@@ -31,7 +33,7 @@
 	});
   
 	const renderDataGrid = () => {
-	  const dataGrid = new DevExpress.ui.dxDataGrid(
+	  dataGrid = new DevExpress.ui.dxDataGrid(
 		document.getElementById("dataGrid"),
 		{
 		  dataSource: gridData,
@@ -84,8 +86,7 @@
   
 			  const responseData = await response.json();
 			  if (response.ok) {
-				
-				e.data.name=responseData.name;
+				e.data.id = responseData.id;
 				gridData.push(e.data);
 				dataGrid.refresh();
 			  } else {
@@ -96,37 +97,36 @@
 			}
 		  },
   
-		  
 		  onRowUpdating: async (e) => {
-  console.log("Data sent to API:", e.newData);
-  try {
-    const response = await fetch(
-      `https://api.recruitly.io/api/candidate?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(e.newData),
-      }
-    );
-	const responseData = await response.json();
-	if (response.ok) {
-  	const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
- 		 if (updatedItemIndex > -1) {
-  	  // Replace the old item with the updated item from the response
-  	  gridData[updatedItemIndex] = responseData;
-  	  dataGrid.refresh();
- 	 }
-	} else {
-  console.error("Failed to update record:", responseData.error);
-}
-
-  } catch (error) {
-    console.error("Failed to update record:", error);
-  }
-},
-
+			console.log("Data sent to API:", e.newData);
+			try {
+			  const response = await fetch(
+				`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
+				{
+				  method: "PUT",
+				  headers: {
+					"Content-Type": "application/json",
+				  },
+				  body: JSON.stringify(e.newData),
+				}
+			  );
+  
+			  const responseData = await response.json();
+			  if (response.ok) {
+				const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
+				if (updatedItemIndex > -1) {
+				  // Replace the old item with the updated item from the response
+				  gridData[updatedItemIndex] = responseData;
+				  dataGrid.refresh();
+				}
+			  } else {
+				console.error("Failed to update record:", responseData.error);
+			  }
+			} catch (error) {
+			  console.error("Failed to update record:", error);
+			}
+		  },
+  
 		  onRowRemoving: async (e) => {
 			console.log("Data being sent to API:", e.data);
 			try {
@@ -134,17 +134,15 @@
 				`https://api.recruitly.io/api/candidate/${e.data.id}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
 				{
 				  method: "DELETE",
-				  headers: {
-					"Content-Type": "application/json",
-					
-				  },
 				}
 			  );
-		
+  
 			  if (response.ok) {
 				const removedItemIndex = gridData.findIndex((item) => item.id === e.key);
-				gridData.splice(removedItemIndex, 1);
-				dataGrid.refresh();
+				if (removedItemIndex > -1) {
+				  gridData.splice(removedItemIndex, 1);
+				  dataGrid.refresh();
+				}
 			  } else {
 				console.error("Failed to delete record.");
 			  }
@@ -159,10 +157,7 @@
 		  },
 		}
 	  );
-  
-	  
 	};
-  </script>
+</script>
   
-  <div id="dataGrid"></div>
-  
+<div id="dataGrid"></div>
