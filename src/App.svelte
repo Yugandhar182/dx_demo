@@ -131,7 +131,7 @@
 			console.log("Data being sent to API:", e.data);
 			try {
 			  const response = await fetch(
-				`https://api.recruitly.io/api/candidate/delete?apiKey=TEST9349C0221517DA4942E39B5DF18C68CDA154`,
+				`https://api.recruitly.io/api/candidate?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
 				{
 				  method: "DELETE",
 				  headers: {
