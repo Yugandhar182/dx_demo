@@ -38,6 +38,7 @@
 		{
 		  dataSource: gridData,
 		  columns: [
+			{ dataField: "id", caption: "id", width: 200 },
 			{ dataField: "firstName", caption: "firstName", width: 200 },
 			{ dataField: "email", caption: "email", width: 200 },
 			{ dataField: "mobile", caption: "mobile", width: 150 },
