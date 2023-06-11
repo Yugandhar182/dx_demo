@@ -151,10 +151,7 @@
 			}
 		  },
   
-		  onInitialized: () => {
-			// Function called when the grid is initialized
-			// ...
-		  },
+		
 		}
 	  );
 	};
