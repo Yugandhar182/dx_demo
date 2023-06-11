@@ -68,8 +68,8 @@
   
 				if (response.ok) {
 				  const responseJson = await response.json();
-				  // Update the grid data with the newly added row
-				  gridData.push(responseJson.data);
+				  // Update the grid data with the newly added row at the beginning
+				  gridData.unshift(responseJson.data);
 				  dataGrid.option("dataSource", gridData);
 				  dataGrid.refresh();
 				  console.log("New row added successfully");
@@ -149,4 +149,4 @@
   </script>
   
   <div id="dataGrid"></div>
-a  
+  
