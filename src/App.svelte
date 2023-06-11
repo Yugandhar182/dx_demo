@@ -3,7 +3,6 @@
 	import DevExpress from "devextreme";
   
 	let jsonData = [];
-	let data = [];
   
 	onMount(async () => {
 	  const response = await fetch(
@@ -63,6 +62,7 @@
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify(newRowData),
+					
 				  }
 				);
   
@@ -146,7 +146,6 @@
 		}
 	  );
 	}
-  </script>
-  
-  <div id="dataGrid"></div>
-  
+</script>
+
+<div id="dataGrid"></div>
