@@ -102,7 +102,7 @@
 			console.log("Data sent to API:", e.newdata);
 			try {
 			  const response = await fetch(
-				`https://api.recruitly.io/api/candidate/${e.newdata}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
+				`https://api.recruitly.io/api/candidate/${e.newdata.id}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
 				{
 				  method: "POST",
 				  headers: {
@@ -114,6 +114,7 @@
   
 			  if (response.ok) {
 				const responseData = await response.json();
+				e.newdata.id = responseData.id;
 				const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
 				if (updatedItemIndex > -1) {
 				  // Replace the old item with the updated item from the response
