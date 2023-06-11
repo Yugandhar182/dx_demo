@@ -114,7 +114,7 @@
   
 			  if (response.ok) {
                 const responseData = await response.json();
-                e.newdata = responseData;
+                e.newdata.id = responseData.id;
                        const updatedItemIndex = gridData.findIndex((item) => item.id === e.key);
               if (updatedItemIndex > -1) {
              // Replace the old item with the updated item from the response
