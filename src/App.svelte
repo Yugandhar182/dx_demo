@@ -98,16 +98,16 @@
 		  },
   
 		  onRowUpdating: async (e) => {
-			console.log("Data sent to API:", e.newData);
+			console.log("Data sent to API:", e.data);
 			try {
 			  const response = await fetch(
 				`https://api.recruitly.io/api/candidate/${e.key}?apiKey=TEST27306FA00E70A0F94569923CD689CA9BE6CA`,
 				{
-				  method: "PUT",
+				  method: "POST",
 				  headers: {
 					"Content-Type": "application/json",
 				  },
-				  body: JSON.stringify(e.newData),
+				  body: JSON.stringify(e.data),
 				}
 			  );
   
